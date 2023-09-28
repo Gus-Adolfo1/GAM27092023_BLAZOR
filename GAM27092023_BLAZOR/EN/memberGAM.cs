@@ -2,9 +2,9 @@
 
 namespace GAM27092023_BLAZOR.EN
 {
-    public class TableGAM
+    public class memberGAM
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         
         public string name { get; set; }
         public int age { get; set; }
