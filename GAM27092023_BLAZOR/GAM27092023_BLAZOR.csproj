@@ -15,4 +15,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\member.DTOs\member.DTOs.csproj" />
+  </ItemGroup>
+
 </Project>
