@@ -1,18 +1,21 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace GAM27092023_BLAZOR.EN
+namespace member.DTOs.memberDTOs
 {
-    public class memberGAM
-    {    
+    public class searchOutputDTO
+    {
         public int Id { get; set; }
-        [Required]
+  
         public string name { get; set; }
         public int age { get; set; }
 
         public decimal height { get; set; }
 
         public DateTime dob { get; set; }
-
     }
 }
