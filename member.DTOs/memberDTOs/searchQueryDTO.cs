@@ -12,6 +12,8 @@ namespace member.DTOs.memberDTOs
     {
         [Display(Name = "Nombre")]
         public string? nameLike { get; set; }
+        [Display(Name = "LastName")]
+        public string? lastnameLike { get; set; }
         [Display(Name = "pagina")]
         public int Skip { get; set; }
         [Display(Name = "CantReg X Pagina")]

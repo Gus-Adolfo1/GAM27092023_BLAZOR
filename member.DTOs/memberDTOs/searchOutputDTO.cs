@@ -9,13 +9,30 @@ namespace member.DTOs.memberDTOs
 {
     public class searchOutputDTO
     {
-        public int Id { get; set; }
-  
-        public string name { get; set; }
-        public int age { get; set; }
+        public int CounRow { get; set; }
 
-        public decimal height { get; set; }
+        public List<memberDTOs> Data { get; set; }
 
-        public DateTime dob { get; set; }
+        public class memberDTOs
+        {
+            public int id { get; set; }
+
+            [Display(Name = "Nombre")]
+            public string name { get; set; }
+
+            [Display(Name = "Apellido")]
+            public string lastname { get; set; }
+
+            [Display(Name = "Edad")]
+            public int age { get; set; }
+
+            [Display(Name = "Estatura")]
+            public decimal height { get; set; }
+
+            [Display(Name = "Fecha de Nacimiento")]
+            public DateTime dob { get; set; }
+         }
+        }
     }
-}
+
+

@@ -9,13 +9,21 @@ namespace member.DTOs.memberDTOs
 {
     public class searchResultDTO
     {
-        public int Id { get; set; }
-     
+        public int id { get; set; }
+
+        [Display(Name = "Nombre")]
         public string name { get; set; }
+
+        [Display(Name = "Apellido")]
+        public string lastname { get; set; }
+
+        [Display(Name = "Edad")]
         public int age { get; set; }
 
+        [Display(Name = "Estatura")]
         public decimal height { get; set; }
 
+        [Display(Name = "Fecha de Nacimiento")]
         public DateTime dob { get; set; }
 
     }

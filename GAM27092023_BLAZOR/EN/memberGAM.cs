@@ -5,9 +5,11 @@ namespace GAM27092023_BLAZOR.EN
 {
     public class memberGAM
     {    
-        public int Id { get; set; }
-        [Required]
+        public int id { get; set; }
+     
         public string name { get; set; }
+
+        public string lastname { get; set; }
         public int age { get; set; }
 
         public decimal height { get; set; }
