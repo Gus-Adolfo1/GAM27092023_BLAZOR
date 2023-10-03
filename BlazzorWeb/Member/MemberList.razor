@@ -36,9 +36,60 @@
     </div>
     <br />
     <button type="submit" class="btn btn-primary">Buscar</button>
-    <NavLink href="/create-customer" class="btn btn-secondary">Ir a crear</NavLink>
+    <NavLink href="/create-member" class="btn btn-secondary">Ir a crear</NavLink>
     <br />
 </EditForm>
+<h3>Lista de Clientes</h3>
+<div class="row" style="overflow:auto !important; max-width:600px">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <NavLink class="page-link" @onclick="async () => await PaginationSearch(skipAnte)">Anterior</NavLink>
+            </li>
+            @foreach (var item in paginations)
+            {
+                if (item.Skip != searchQuery.Skip)
+                {
+                    <li class="pege-item">
+                        <NavLink class="page-link" @onclick="async ()=> await PaginationSearch(item.Skip)">@item.NumPage</NavLink>
+                    </li>
+                }
+            }
+            <NavLink class="page-link" @onclick="async ()=> await PaginationSearch(skipSi)">Sifuiente</NavLink>
+        </ul>
+    </nav>
+</div>
+<div class="row-cols-6">
+    <span>Total registros: @searchResult.CountRow</span>
+</div>
+@if (searchResult != null && searchResult.Data != null && searchResult.Data.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>  
+                <th>DOB</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var member in searchResult.Data)
+            {
+                <tr>
+                    <td>@member.name</td>
+                    <td>@member.lastname</td>
+                    <td>@member.dob</td>
+                    <td>
+                        <button class="btn btn-dark" @onclick="() =>GoEdit(member.id)">Editar</button>
+                        <button class="btn btn-info" @onclick="() =>GoDetails(member.id)">ver</button>
+                        <button class="btn btn-danger" @onclick="() =>GoDelete(member.id)">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @code {
     [Inject]
@@ -88,19 +139,19 @@
         UpdatePagination();
     }
 
-    private void GoEdit(int memberid)
+    private void GoEdit(int id)
     {
-        navigation.NavigateTo($"/edit-member/{memberid}");
+        navigation.NavigateTo($"/edit-member/{id}");
     }
 
-    private void GoDetails(int memberid)
+    private void GoDetails(int id)
     {
-        navigation.NavigateTo($"/member-details/{memberid}");
+        navigation.NavigateTo($"/member-details/{id}");
     }
 
-    private void GoDelete(int memberid)
+    private void GoDelete(int id)
     {
-        navigation.NavigateTo($"/delete-mebmber/{memberid}");
+        navigation.NavigateTo($"/delete-member/{id}");
     }
 
     private void UpdatePagination()

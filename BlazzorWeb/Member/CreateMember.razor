@@ -1,0 +1,102 @@
+﻿@page "/create-member"
+
+@using BlazzorWeb.Data
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Components.Forms;
+@using System.Text.Json;
+@using System.ComponentModel.DataAnnotations;
+@using member.DTOs.memberDTOs;
+
+<h3>CreateMember</h3>
+@if (isSuccess == false && isError == false)
+{
+    <hr3>Crear nuevo cliente</hr3>
+    <EditForm Model="member" OnValidSubmit="Create">
+        <DataAnnotationsValidator />
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="Name">Nombre:</label>
+                    <InputText class="form-control" id="Name" @bind-Value="member.name" />
+                    <ValidationMessage For="() => member.name" />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="LastName">Apellido:</label>
+                    <InputText class="form-control" id="LastName" @bind-Value="member.lastname"/>
+                    <ValidationMessage For="() => member.lastname"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="Edad">Edad:</label>
+                    <InputNumber class="form-control" id="Edad" @bind-Value="member.age" />
+                    <ValidationMessage For="() => member.age" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="Estatura">Estatura:</label>
+                    <InputNumber class="form-control" id="Estatura" @bind-Value="member.height" />
+                    <ValidationMessage For="() => member.height" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="FechaNacimiento">FechaNacimiento:</label>
+                    <InputDate class="form-control" id="FechaNacimiento" @bind-Value="member.dob" />
+                    <ValidationMessage For="() => member.dob" />
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <NavLink href="/customer-list" class="btn btn-secondary">Cancelar</NavLink>
+            </div>
+        </div>
+    </EditForm>
+}
+else if (isSuccess)
+{
+    member = new createMemberDTO();
+    isError = false;
+    <p class="alert alert-success">Cliente creado con exito!</p>
+    <button type="button" @onclick="GoCreate" class="btn btn-primary">Ir a crear</button>
+    <NavLink href="/member-list" class="btn btn-primary">Ir a buscar clientes</NavLink>
+}
+else if (isError)
+{
+    <p class="alert alert-success">Sucedio un errror al intetar registrar!</p>
+    <NavLink href="/member-list" class="btn btn-primary">Aceptar</NavLink>
+}
+@code {
+    [Inject]
+    MemberService memberService { get; set; }
+
+    createMemberDTO member = new createMemberDTO();
+    bool isSuccess = false;
+    bool isError = false;
+
+    private async Task Create()
+    {
+        int result = await memberService.Create(member);
+        if (result != 0)
+            isSuccess = true;
+        else
+            isError = true;
+    }
+    private void GoCreate()
+    {
+        isSuccess = false;
+        isError = false;
+    }
+}
