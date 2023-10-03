@@ -9,7 +9,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddSingleton<MemberService>();
-
+//var url = builder.Configuration["UrlsAPI:BLAZZORAPI"];
 builder.Services.AddHttpClient("BLAZZORAPI", c =>
 {
     c.BaseAddress = new Uri(builder.Configuration["UrlsAPI:BLAZZORAPI"]);
