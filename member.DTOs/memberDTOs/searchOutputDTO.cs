@@ -9,7 +9,7 @@ namespace member.DTOs.memberDTOs
 {
     public class searchOutputDTO
     {
-        public int CounRow { get; set; }
+        public int CountRow { get; set; }
 
         public List<memberDTOs> Data { get; set; }
 

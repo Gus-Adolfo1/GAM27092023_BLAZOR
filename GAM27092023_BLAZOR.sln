@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAM27092023_BLAZOR", "GAM27
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "member.DTOs", "member.DTOs\member.DTOs.csproj", "{B4B99843-085F-4CAE-94BE-C7F40DFD25BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazzorWeb", "BlazzorWeb\BlazzorWeb.csproj", "{319A52D6-B0F2-493C-9994-BEF5F61C1B9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazzorWeb", "BlazzorWeb\BlazzorWeb.csproj", "{319A52D6-B0F2-493C-9994-BEF5F61C1B9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

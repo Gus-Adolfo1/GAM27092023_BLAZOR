@@ -7,7 +7,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+
+builder.Services.AddSingleton<MemberService>();
+
+builder.Services.AddHttpClient("BLAZZORAPI", c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration["UrlsAPI:BLAZZORAPI"]);
+});
 
 var app = builder.Build();
 

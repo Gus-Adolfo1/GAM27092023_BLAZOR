@@ -34,7 +34,7 @@ namespace GAM27092023_BLAZOR.EndPoints
                 var memberResults = new searchOutputDTO
                 {
                     Data = new List<searchOutputDTO.memberDTOs>(),
-                    CounRow = countRow
+                    CountRow = countRow
                 };
 
                 member.ForEach(s =>
