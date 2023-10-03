@@ -10,7 +10,7 @@
 <h3>CreateMember</h3>
 @if (isSuccess == false && isError == false)
 {
-    <hr3>Crear nuevo cliente</hr3>
+    <hr3>Crear nuevo Miembro</hr3>
     <EditForm Model="member" OnValidSubmit="Create">
         <DataAnnotationsValidator />
         <div class="row">
@@ -60,7 +60,7 @@
         <div class="row">
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Guardar</button>
-                <NavLink href="/customer-list" class="btn btn-secondary">Cancelar</NavLink>
+                <NavLink href="/member-list" class="btn btn-secondary">Cancelar</NavLink>
             </div>
         </div>
     </EditForm>

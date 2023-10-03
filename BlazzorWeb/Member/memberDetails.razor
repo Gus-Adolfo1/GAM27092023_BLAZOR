@@ -1,0 +1,70 @@
+﻿@page "/member-details/{id:int}"
+
+@using BlazzorWeb.Data
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Components.Forms;
+@using System.Text.Json;
+@using System.ComponentModel.DataAnnotations;
+@using member.DTOs.memberDTOs;
+
+<h3>Ver Cliente</h3>
+
+<div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <label for="Name">Nombre:</label>
+            <input type="text" class="form-control" disabled @bind="member.name" />
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label for="LastName">Apellido:</label>
+            <input type="text" class="form-control" disabled @bind="member.lastname" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="Address">Edad:</label>
+            <textarea class="form-control" disabled @bind="member.age"></textarea>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="Address">Estatura:</label>
+            <textarea class="form-control" disabled @bind="member.height"></textarea>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="Address">Fecha Nacimiento:</label>
+            <textarea class="form-control" disabled @bind="member.dob"></textarea>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-12">
+        <NavLink href="/member-list" class="btn btn-secondary">Cancelar</NavLink>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    [Inject]
+    MemberService memberService { get; set; }
+
+    searchResultDTO member = new searchResultDTO();
+    
+    protected override async Task OnInitializedAsync()
+    {
+        member = await memberService.GetById(Id);
+    }
+}
