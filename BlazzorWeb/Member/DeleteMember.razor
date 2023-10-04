@@ -1,0 +1,96 @@
+﻿@page "/member-delete/{id:int}"
+
+
+@using BlazzorWeb.Data
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Components.Forms;
+@using System.Text.Json;
+@using System.ComponentModel.DataAnnotations;
+@using member.DTOs.memberDTOs;
+
+
+
+
+<h3>Eliminar Cliente</h3>
+@if (isSuccess == false && isError == false)
+{
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="Name">Nombre:</label>
+                <input type="text" class="form-control" disabled @bind="member.name" />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="LastName">Apellido:</label>
+                <input type="text" class="form-control" disabled @bind="member.lastname" />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="LastName">Edad:</label>
+                <input type="text" class="form-control" disabled @bind="member.age" />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="LastName">Estatura:</label>
+                <input type="text" class="form-control" disabled @bind="member.height" />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="LastName">FechaNAcimiento:</label>
+                <input type="text" class="form-control" disabled @bind="member.dob" />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-primary" @onclick="async() => await Delete()">Eliminar</button>
+            <NavLink href="/customer-list" class="btn btn-secondary">Cancelar</NavLink>
+        </div>
+    </div>
+}
+else if (isSuccess)
+{
+    <p class="alert alert-success">Cliente se Elimino con exito!</p>
+    <NavLink href="/customer-list" class="btn btn-primary">Aceptar</NavLink>
+
+}
+else if (isError)
+{
+    <p class="alert alert-success">Sucedio un errror al intetar Eliminar!</p>
+    <NavLink href="/customer-list" class="btn btn-primary">Aceptar</NavLink>
+}
+@code {
+    [Parameter]
+    public int id { get; set; }
+
+
+    [Inject]
+    MemberService memberService { get; set; }
+
+    searchResultDTO member = new searchResultDTO();
+    bool isSuccess = false;
+    bool isError = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        member = await memberService.GetById(id);
+
+    }
+    private async Task Delete()
+    {
+        int result = await memberService.Delete(member.id);
+
+        if (result != 0)
+            isSuccess = true;
+        else
+            isError = true;
+    }
+}
+
